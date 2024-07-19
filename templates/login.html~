@@ -1,0 +1,30 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'design.css')}}">
+    <title> ログイン</title>
+  </head>
+  <body>
+    <h1>ログイン</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <p>
+      <form method="POST" action="{{url_for('login')}}">
+        会員番号 <input type="text" name="id_filter"><br>
+        電話番号 <input type="text" name="phone_filter">
+        <input type="submit" value="ログイン"><br>
+      </form><br>
+    </p>
+
+    <p>
+      <div class = "button"><a href="{{url_for('index')}}">戻る</a></div>
+    </p>
+  </body>
+</html>

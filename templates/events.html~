@@ -1,0 +1,42 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href="{{url_for('static',filename = 'design.css')}}">
+    <title>イベント一覧</title>
+  </head>
+  <body>
+    <h1>イベント一覧</h1>
+
+    <form method="POST" action="{{ url_for('events_filtered', id=id) }}">
+        <p>
+            <select name="event_type">
+                {% for eventtype in event_list %}
+                    <option value="{{ eventtype.type_name }}">{{ eventtype.type_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="フィルター">
+        </p>
+    </form>
+
+    
+    <table>
+      <thead>
+	<tr>
+	  <th>イベント名</th>
+	</tr>
+      </thead>
+      <tbody>
+	{% for event in e_list %}
+	<tr>
+	  <td>{{ event.event_name }}</td>
+	</tr>
+	{% endfor %}
+      </tbody>
+    </table>
+
+    <p>
+      <div class = "button"><a href="{{url_for('artist',id = id)}}">戻る</a></div><br>
+      <div class = "button"><a href="{{url_for('index')}}">入口のページ</a></div>
+    </p>
+  </body>
+</html>

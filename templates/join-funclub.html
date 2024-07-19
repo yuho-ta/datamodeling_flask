@@ -1,0 +1,71 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'design.css')}}">
+    <title>入会</title>
+  </head>
+  <body>
+    <h1>入会</h1>
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+	    {% endwith %}
+    <p>
+      <table>
+	<thead>
+	  <tr>
+	    <th>コース名</th>
+	    <th>期間（月）</th>
+	    <th>値段</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  {% for course in course_list %}
+	  <tr>
+	    <td>{{ course.course_name }}</td>
+	    <td>{{ course.duration_months }}</td>
+	    <td>{{ course.fee }}</td>
+	  </tr>
+	  {% endfor %}
+	</tbody>
+      </table>
+    </p>
+    <p>
+      <div class = "back">
+      <h2> 入会フォーム</h2>
+      <form method="POST" action="{{ url_for('join_funclub_execute', id=id) }}">
+        <label for="ID">会員番号</label><br>
+	<input type="text" name="id" id="id"><br>
+	
+	<label for="artist">アーティスト</label><br>
+	<select name="artist" id="artist">
+          {% for artist in artist_list %}
+          <option value="{{ artist.name }}">{{ artist.name }}</option>
+          {% endfor %}
+	</select><br>
+	
+	<label for="course">コース</label><br>
+	<select name="course" id="course">
+          {% for course in course_list %}
+          <option value="{{ course.course_name }}">{{ course.course_name }}</option>
+          {% endfor %}
+	</select><br>
+	
+	<label for="start_date">開始日</label><br>
+	<input type="date" name="start_date" id="start_date"><br>
+	
+	<input type="submit" value="入会">
+      </form><br>
+      </div>
+    </p>
+
+    <p>
+      <div class = "button"><a href="{{ url_for('customer', id=id) }}">戻る</a></div><br>
+    </p>
+  </body>
+</html>

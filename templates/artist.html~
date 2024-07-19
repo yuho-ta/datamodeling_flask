@@ -1,0 +1,31 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'design.css')}}">
+    <title>アーティスト詳細ページ</title>
+  </head>
+  <body>
+    <h1>アーティスト詳細</h1>
+    <p>
+      <table>
+        <tr>
+          <th>ID</th>
+          <td>{{artist.id}}</td>
+        </tr>
+        <tr>
+          <th>グループ名</th>
+          <td>{{artist.name}}</td>
+        </tr>
+        <tr>
+          <th>デビュー年</th>
+          <td>{{artist.debut_year}}</td>
+        </tr>
+      </table><br>
+      <div class = "button"><a href="{{url_for('events', id = artist.id)}}">イベント履歴</a></div><br>
+    </p>
+    <p>
+      <div class = "button"><a href="{{url_for('artists')}}">戻る</a></div><br>
+      <div class = "button"><a href="{{url_for('index')}}">入口のページ</a></div>
+    </p>
+  </body>
+</html>

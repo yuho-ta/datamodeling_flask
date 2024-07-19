@@ -1,0 +1,29 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='design.css') }}">
+  <title>退会</title>
+</head>
+<body>
+  <h1>退会</h1><br>
+  
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  
+  <p>本当に退会しますか？</p>
+  
+  <form method="POST" action="{{ url_for('customer_del_execute', id=id) }}">
+    <input type="submit" value="退会">
+  </form><br>
+  
+  <p class="button"><a href="{{ url_for('customer', id=id) }}">戻る</a></p>
+
+</body>
+</html>
